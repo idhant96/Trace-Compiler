@@ -184,7 +184,7 @@ quotes. Default value: “” (Empty)
 
 3.  Not
 
-**Assignment Operator: **
+**Assignment Operator:**
 
 1.  Equals: “=”
 
@@ -247,7 +247,7 @@ printed inside ‘()’.
 
 Example: print(“Hello World!”)
 
-**Loop statement: **
+**Loop statement:**
 
 **Simple for pattern**
 
