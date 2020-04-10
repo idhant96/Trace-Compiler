@@ -188,7 +188,7 @@ quotes. Default value: “” (Empty)
 
 1.  Equals: “=”
 
-**Declarations**
+**Declarations:**
 
 A block can have zero or more number of declaration statements. Our
 program is strongly typed and data type has to be explicitly mentioned.
@@ -205,7 +205,7 @@ Example of declaration.
 
 4.  string name;
 
-**Conditional Statement**
+**Conditional Statement:**
 
 The “if (condition) then” statement executes a block if the condition
 evaluates to true. If the condition evaluates to false, the block
@@ -341,24 +341,24 @@ Boolean expression:
 The boolean expression can simply evaluate to be a ‘true’ or ‘false’
 value.
 
-**‘not’ boolean operator:** This operator is used to negate the value of
+'not' boolean operator: This operator is used to negate the value of
 a boolean expression.
 
 Syntax : ‘not’ keyword followed by a boolean expression.
 
-**‘and’ boolean operator:** This operator is used to check whether both
+'and’ boolean operator: This operator is used to check whether both
 value of the two boolean expression evaluates to ‘true’
 
 Syntax : boolean expression1 followed by ‘and’ keyword followed by a
 boolean expression2.
 
-**‘Or’ boolean operator:** This operator is used to check whether either
+‘Or’ boolean operator: This operator is used to check whether either
 value of the two boolean expression evaluates to ‘true’
 
 Syntax : boolean expression1 followed by ‘or’ keyword followed by a
 boolean expression2.
 
-**‘equality’ boolean operator:** This operator is used to check whether
+‘equality’ boolean operator: This operator is used to check whether
 the values of two expressions(numeric/boolean/string) are equal.
 
 Syntax : expression1 followed by ‘ ==’ keyword followed by expression2.
@@ -406,5 +406,4 @@ Syntax : expression1 followed by ‘ ==’ keyword followed by expression2.
 > }
 >
 > print(“This is a sample program”);
-
-}
+>}
