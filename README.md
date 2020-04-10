@@ -218,17 +218,20 @@ different blocks based on different conditions. The keyword “else if
 
 Examples of conditionals:
 
-1.  if (x == 2 ) then { x = x + 2 }
-
+1.  
+> if (x == 2 ) then { x = x + 2 }
+>
 > else then { x = x + 1}
 
-1.  if (x == 2) then {x = x + 2}
-
+2.
+> if (x == 2) then {x = x + 2}
+>
 > else if (x == 3) then { x = x + 1 }
 >
 > else then { x = x + 3}
 
-1.  if (x == 2) then { x = x + 2 }
+3.  
+> if (x == 2) then { x = x + 2 }
 
 **Statement Lists:**
 
@@ -296,7 +299,7 @@ Examples of Simple for pattern :
 >
 > }
 
-**Assignment Statement : **
+**Assignment Statement: **
 
 This statement is used to set a value given to a variable.
 
@@ -343,18 +346,18 @@ Boolean expression:
 The boolean expression can simply evaluate to be a ‘true’ or ‘false’
 value.
 
-**‘not’ boolean operator:** This operator is used to negate the value of
+‘not’ boolean operator: This operator is used to negate the value of
 a boolean expression.
 
 Syntax : ‘not’ keyword followed by a boolean expression.
 
-**‘and’ boolean operator:** This operator is used to check whether both
+‘and’ boolean operator: This operator is used to check whether both
 value of the two boolean expression evaluates to ‘true’
 
 Syntax : boolean expression1 followed by ‘and’ keyword followed by a
 boolean expression2.
 
-**‘Or’ boolean operator:** This operator is used to check whether either
+'Or’ boolean operator: This operator is used to check whether either
 value of the two boolean expression evaluates to ‘true’
 
 Syntax : boolean expression1 followed by ‘or’ keyword followed by a
@@ -408,5 +411,5 @@ Syntax : expression1 followed by ‘ ==’ keyword followed by expression2.
 > }
 >
 > print(“This is a sample program”);
-
-}
+>
+> }
