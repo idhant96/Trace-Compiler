@@ -365,16 +365,16 @@ Syntax : expression1 followed by ‘ ==’ keyword followed by expression2.
 
 **Example Program:**
 
-execute {
-
-number a;
-
-bool isValid = false;
-
-string name = “team22”;
-
-if(name == “team22” ) then {
-
+> execute {
+>
+> number a;
+>
+> bool isValid = false;
+>
+> string name = “team22”;
+>
+> if(name == “team22” ) then {
+>
 > print(“team 22”);
 >
 > } else then {
