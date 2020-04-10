@@ -299,50 +299,20 @@ Examples of Simple for pattern :
 >
 > }
 
-**Assignment Statement: **
+**Assignment Statement:**
 
 This statement is used to set a value given to a variable.
 
 Examples of assignment statement :
 
-1.  X = 5;
-
-2.  X = “Hello World!”;
-
-3.  X = “true”;
-
-bool\_expr -&gt; true
-
-bool\_expr -&gt; false
-
-bool\_expr -&gt; not bool\_expr
-
-bool\_expr -&gt; bool\_expr and bool\_expr
-
-bool\_expr -&gt; bool\_expr or bool\_expr
-
-bool\_expr -&gt; number\_expr = = number\_expr
-
-bool\_expr -&gt; bool\_expr = = bool\_expr
-
-bool\_expr -&gt; string\_expr = = string\_expr
-
-bool\_expr -&gt; number\_expr ! = number\_expr
-
-bool\_expr -&gt; bool\_expr ! = bool\_expr
-
-bool\_expr -&gt; string\_expr ! = string\_expr
-
-bool\_expr -&gt; number\_expr &gt; number\_expr
-
-bool\_expr -&gt; number\_expr &lt; number\_expr
-
-bool\_expr -&gt; number\_expr &gt; = number\_expr
-
-bool\_expr -&gt; number\_expr &lt; = number\_expr
+>1.  X = 5;
+>
+>2.  X = “Hello World!”;
+>
+>3.  X = “true”;
 
 
-Boolean expression:
+**Boolean expression:**
 
 The boolean expression can simply evaluate to be a ‘true’ or ‘false’ value.
 ‘not’ boolean operator: This operator is used to negate the value of a boolean expression.
