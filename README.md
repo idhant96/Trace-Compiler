@@ -341,32 +341,37 @@ bool\_expr -&gt; number\_expr &gt; = number\_expr
 
 bool\_expr -&gt; number\_expr &lt; = number\_expr
 
+
 Boolean expression:
 
-The boolean expression can simply evaluate to be a ‘true’ or ‘false’
-value.
-
-‘not’ boolean operator: This operator is used to negate the value of
-a boolean expression.
-
+The boolean expression can simply evaluate to be a ‘true’ or ‘false’ value.
+‘not’ boolean operator: This operator is used to negate the value of a boolean expression.
 Syntax : ‘not’ keyword followed by a boolean expression.
 
-‘and’ boolean operator: This operator is used to check whether both
-value of the two boolean expression evaluates to ‘true’
+‘and’ boolean operator: This operator is used to check whether both value of the two boolean expression evaluates to  ‘true’
+Syntax : boolean expression1 followed by  ‘and’ keyword followed by a boolean expression2.
 
-Syntax : boolean expression1 followed by ‘and’ keyword followed by a
-boolean expression2.
+‘Or’ boolean operator: This operator is used to check whether either value of the two boolean expression evaluates to  ‘true’
+Syntax : boolean expression1 followed by  ‘or’ keyword followed by a boolean expression2.
 
-'Or’ boolean operator: This operator is used to check whether either
-value of the two boolean expression evaluates to ‘true’
+‘equality’ boolean operator:  This operator is used to check whether the values of  two expressions(numeric/boolean/string) are equal.
+Syntax : expression1 followed by ‘ ==’  keyword followed by expression2.
 
-Syntax : boolean expression1 followed by ‘or’ keyword followed by a
-boolean expression2.
+‘!=’(not equal) boolean operator:  This operator is used to check whether the values of  two expressions(numeric/boolean/string) are not equal.
+Syntax : expression1 followed by ‘ !=’  keyword followed by expression2.
 
-**‘equality’ boolean operator:** This operator is used to check whether
-the values of two expressions(numeric/boolean/string) are equal.
+‘>’(greater than) boolean operator:  This operator is used to check whether the value of  an expression1(numeric/boolean/string) is greater than expression2.
+Syntax : expression1 followed by ‘ >’  keyword followed by expression2.
 
-Syntax : expression1 followed by ‘ ==’ keyword followed by expression2.
+‘<’(lesser than) boolean operator:  This operator is used to check whether the value of  an expression1(numeric/boolean/string) is lesser than expression2.
+Syntax : expression1 followed by ‘<’  keyword followed by expression2.
+
+‘>=’(greater than or equal to) boolean operator:  This operator is used to check whether the value of  an expression1(numeric/boolean/string) is greater than or equal to expression2.
+Syntax : expression1 followed by ‘ >=’  keyword followed by expression2.
+
+‘<=’(lesser than or equal to) boolean operator:  This operator is used to check whether the value of  an expression1(numeric/boolean/string) is lesser than or equal to expression2.
+Syntax : expression1 followed by ‘<=’  keyword followed by expression2.
+
 
 **Example Program:**
 
