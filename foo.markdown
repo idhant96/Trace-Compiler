@@ -1,5 +1,5 @@
 
-Grammar
+**Grammar**
 
 program -&gt; execute block
 
@@ -119,7 +119,7 @@ number -&gt; X {number(X)}
 string -&gt; X {string(X)}
 
 
-Explanation :
+**Description**
 
 Program begins with the keyword “execute”.
 
@@ -363,7 +363,7 @@ the values of two expressions(numeric/boolean/string) are equal.
 
 Syntax : expression1 followed by ‘ ==’ keyword followed by expression2.
 
-Example Program:
+**Example Program:**
 
 execute {
 
