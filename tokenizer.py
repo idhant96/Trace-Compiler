@@ -1,7 +1,7 @@
 import ply.lex as lex
 
 # List of token names.   This is always required
-tokens = (
+basic = [
    'NUMBER',
    'PLUS',
    'MINUS',
@@ -9,7 +9,25 @@ tokens = (
    'DIVIDE',
    'LPAREN',
    'RPAREN',
-)
+   'BLOCKOPEN',
+   'BLOCKCLOSE',
+   'VARIABLE',
+   'DELIMITER'
+]
+
+# Keywords applicable
+reserved = {
+    'if' : 'IF',
+   'then' : 'THEN',
+   'else' : 'ELSE',
+   'while' : 'WHILE',
+   'execute': 'EXECUTE',
+   'for' : 'FOR',
+   'print' : 'PRINT',
+   'number' : 'INT'
+}
+
+tokens = basic + list(reserved.values())
 
 # Regular expression rules for simple tokens
 t_PLUS    = r'\+'
@@ -18,6 +36,15 @@ t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
+t_BLOCKOPEN = r'\{'
+t_BLOCKCLOSE = r'\}'
+t_DELIMITER = r'\;'
+
+#Variables
+def t_VARIABLE(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reserved.get(t.value,'VARIABLE')  
+    return t
 
 # A regular expression rule with some action code
 def t_NUMBER(t):
@@ -55,7 +82,7 @@ while True:
     token = lexer.token()
     if not token:
         break
-    print(token.value)
+    # print(token.value)
     token_lsit.append(token.value)
     
 print(token_lsit)
