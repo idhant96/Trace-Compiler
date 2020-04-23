@@ -12,7 +12,8 @@ basic = [
    'BLOCKOPEN',
    'BLOCKCLOSE',
    'VARIABLE',
-   'DELIMITER'
+   'DELIMITER',
+   'ASSIGNMENT'
 ]
 
 # Keywords applicable
@@ -34,6 +35,7 @@ t_PLUS    = r'\+'
 t_MINUS   = r'-'
 t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
+t_ASSIGNMENT  = r'='
 t_LPAREN  = r'\('
 t_RPAREN  = r'\)'
 t_BLOCKOPEN = r'\{'
@@ -69,21 +71,38 @@ def t_error(t):
 lexer = lex.lex()
 
 
-f = open('./demo.txt')
+f = open('./samples/sample7.txt')
 
 s = str(f.read())
 
 
 lexer.input(s)
 
-token_lsit = []
+token_list = []
 
 while True:
     token = lexer.token()
     if not token:
         break
-    # print(token.value)
-    token_lsit.append(token.value)
-    
-print(token_lsit)
-    
+    print(token)
+    token_list.append(token.value)
+
+print(token_list)
+
+
+'''
+TASKS:-
+add new token to token list
+join tokenlist to a str and pass it to swi
+pacakge the py code 
+make command line extension
+make a token test
+
+'''
+
+
+
+# from pyswip import Prolog
+# prolog = Prolog()
+# prolog.consult('./ParseTree.pl')
+# print(list(prolog.query("program(P, [execute,'{', number, a, ;, number, b, ;, number, c, = , a, +, b,;, if, '(',c,'>',10,')', then,'{', print, '(', \"swarna\",')', ;, '}', else, if, '(', b, >, 10,')', then, '{', print, '(', \"preethi\",')',;, '}','}'],[]).")))

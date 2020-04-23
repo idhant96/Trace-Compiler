@@ -1,5 +1,5 @@
 :- table number_expr/3, level_1/3, bool_expr/3.
-:- use_rendering(svgtree).
+%:- use_rendering(svgtree).
 
 program(X)  --> [execute], block(X).
 block(tree_block(X,Y)) --> ['{'], declarationList(X), statementList(Y), ['}'].
