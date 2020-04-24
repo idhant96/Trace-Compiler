@@ -1,0 +1,8 @@
+execute{
+    number num = 16;
+    number sum = 0;
+    while(num > 0){
+        sum = sum + num;
+        num = num - 1;
+    }
+}

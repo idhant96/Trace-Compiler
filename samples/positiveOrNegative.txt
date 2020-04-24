@@ -1,0 +1,10 @@
+execute{
+number a = 1;
+if(a>0)
+then{
+print(“positive number”);
+}
+else{
+print(“negative number”);
+}
+}
