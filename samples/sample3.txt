@@ -1,0 +1,4 @@
+execute {
+string a = "idhant is awesome";
+print ( a );
+}
