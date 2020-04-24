@@ -13,7 +13,7 @@ make a token test
 
 '''
 
-path = './samples/sample3.txt'
+path = './samples/sample1.txt'
 print('tokens of :', path)
 
 
@@ -34,7 +34,7 @@ prolog.consult('./ParseTree.pl')
 
 final_string = "program(P, " + tokens + " [])."
 print(final_string)
-# print(list(prolog.query(final_string)))
-
-
-# print(list(prolog.query("program(P, [execute,'{', number, a, ;, number, b, ;, number, c, = , a, +, b,;, if, '(',c,'>',10,')', then,'{', print, '(', \"swarna\",')', ;, '}', else, if, '(', b, >, 10,')', then, '{', print, '(', \"preethi\",')',;, '}','}'],[]).")))
+soln = list(prolog.query(final_string))
+print(soln)
+for soln in prolog.query(final_string):
+    print(soln["P"])

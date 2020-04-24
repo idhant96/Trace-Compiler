@@ -1,0 +1,4 @@
+# Update your project packages here! :P
+certifi==2020.4.5.1
+ply==3.11
+pyswip==0.2.9

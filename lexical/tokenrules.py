@@ -33,12 +33,6 @@ reserved = {
         'string': 'STRING'
         }
 
-    
-
-
-
-
-
 tokens = basic + list(reserved.values())
 
 # Regular expression rules for simple tokens
@@ -106,12 +100,8 @@ def get_tokens(filepath=None):
             break
         if token.type == 'VARIABLE' or token.type == 'STRINGVAL':
             token_string += '{},'.format(token.value)
-            # token_list.append('\"' + token.value + '\"')
-        # elif token.type == 'STRINGVAL':
-        #     token_string += '{},'.format(token.value)
         else:
             token_string += "\'{}\',".format(token.value)
-            # token_list.append(token.value)
         print(token)
     return '[' + token_string[0:-1] + '],'
 
