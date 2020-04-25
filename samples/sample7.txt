@@ -1,0 +1,13 @@
+execute{
+    number a;
+    number b;
+    number c = a + b;
+    if(c >10) then {
+        print("swarna");
+
+    }
+    else if(b > 10) then {
+        print("preethi");
+        
+    }
+}

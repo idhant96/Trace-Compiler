@@ -1,0 +1,4 @@
+execute {
+string a="igvhvj";
+print ( a );
+}

@@ -1,0 +1,10 @@
+execute{
+number a = 1;
+if(a%2 == 0)
+then{
+print(“Even number”);
+}
+else{
+print(“Odd number”);
+}
+}
