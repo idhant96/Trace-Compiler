@@ -81,29 +81,10 @@ def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
-# Build the lexer
-lexer = lex.lex()
+def rules():
+    return lex.lex()
 
-def get_tokens(filepath=None):
-    if not filepath:
-        print('wrong path')
-        return None
-    f = open(filepath)
-    s = str(f.read())
-    lexer.input(s)
-    # token_list = []
-    token_string = ''
 
-    while True:
-        token = lexer.token()
-        if not token:
-            break
-        if token.type == 'VARIABLE' or token.type == 'STRINGVAL':
-            token_string += '{},'.format(token.value)
-        else:
-            token_string += "\'{}\',".format(token.value)
-        print(token)
-    return '[' + token_string[0:-1] + '],'
 
 
 
