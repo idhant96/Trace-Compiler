@@ -166,8 +166,8 @@ eval_level2(tree_variable(X), Env, Scope, Val) :- eval_variable(X, Env, Scope, V
 bool_expr(tree_not(X)) --> [not], bool_expr(X).
 bool_expr(tree_and(X,Y)) --> bool_expr(X), [and] , bool_expr(Y).
 bool_expr(tree_or(X,Y)) --> bool_expr(X), [or] , bool_expr(Y).
-bool_expr(tree_equalityNum(X,Y)) --> number_expr(X), ['='], ['='], number_expr(Y).
-bool_expr(tree_notEqualNum(X,Y)) --> number_expr(X), ['!'], ['='], number_expr(Y).
+bool_expr(tree_equalityNum(X,Y)) --> number_expr(X), ['=='], number_expr(Y).
+bool_expr(tree_notEqualNum(X,Y)) --> number_expr(X), ['!='], number_expr(Y).
 bool_expr(tree_greater(X,Y)) --> number_expr(X), ['>'], number_expr(Y).
 bool_expr(tree_lesser(X,Y)) --> number_expr(X), ['<'], number_expr(Y).
 bool_expr(tree_greaterOrEq(X,Y)) --> number_expr(X), ['>='], number_expr(Y).
