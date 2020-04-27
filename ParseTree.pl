@@ -76,8 +76,8 @@ statement(tree_print_statement(X)) --> print_statement(X).
 statement(tree_statement_number(X,Y)) --> var_name(X), ['='], number_expr(Y).
 statement(tree_statement_bool(X,Y)) --> var_name(X), ['='], bool_expr(Y).
 statement(tree_statement_string(X,Y)) --> var_name(X), ['='], string_expr(Y).
-statement(tree_statement_increment(X)) --> var_name(X), ['+'], ['+'].
-statement(tree_statement_decrement(X)) --> var_name(X), ['-'], ['-'].
+statement(tree_statement_increment(X)) --> var_name(X), ['++'].
+statement(tree_statement_decrement(X)) --> var_name(X), ['--'].
 
 eval_statement(tree_print_statement(X), Env,Env,Scope) :- eval_print_statement(X,Env,Scope).
 eval_statement(tree_statement_number(X,Y), Env,EnvR,Scope) :-  lookup_for_previous_scope(X,Env,Scope,_), eval_numberExp(Y,Env,Scope,Val), update_for_previous_scope(X,Val,Scope,Env,EnvR).
@@ -170,12 +170,12 @@ bool_expr(tree_equalityNum(X,Y)) --> number_expr(X), ['='], ['='], number_expr(Y
 bool_expr(tree_notEqualNum(X,Y)) --> number_expr(X), ['!'], ['='], number_expr(Y).
 bool_expr(tree_greater(X,Y)) --> number_expr(X), ['>'], number_expr(Y).
 bool_expr(tree_lesser(X,Y)) --> number_expr(X), ['<'], number_expr(Y).
-bool_expr(tree_greaterOrEq(X,Y)) --> number_expr(X), ['>'], ['='], number_expr(Y).
-bool_expr(tree_lesserOrEq(X,Y)) --> number_expr(X), ['<'], ['='], number_expr(Y).
-bool_expr(tree_equalityString(X,Y)) --> string_expr(X), ['='], ['='], string_expr(Y).
-bool_expr(tree_notEqualString(X,Y)) --> string_expr(X), ['!'], ['='], string_expr(Y).
-bool_expr(tree_equalityBool(X,Y)) --> bool_expr(X), ['='], ['='], bool_expr(Y).
-bool_expr(tree_notEqualBool(X,Y)) --> bool_expr(X), ['!'], ['='], bool_expr(Y).
+bool_expr(tree_greaterOrEq(X,Y)) --> number_expr(X), ['>='], number_expr(Y).
+bool_expr(tree_lesserOrEq(X,Y)) --> number_expr(X), ['<='], number_expr(Y).
+bool_expr(tree_equalityString(X,Y)) --> string_expr(X), ['=='], string_expr(Y).
+bool_expr(tree_notEqualString(X,Y)) --> string_expr(X), ['!='], string_expr(Y).
+bool_expr(tree_equalityBool(X,Y)) --> bool_expr(X), ['=='], bool_expr(Y).
+bool_expr(tree_notEqualBool(X,Y)) --> bool_expr(X), ['!='], bool_expr(Y).
 
 
 
