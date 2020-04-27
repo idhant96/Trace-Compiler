@@ -18,25 +18,48 @@ basic = [
         'GREATEROPERATOR',
         'LESSEROPERATOR',
         'DOUBLEQUOTES',
-        "STRINGVAL"
+        "STRINGVAL",
+        "MOD",
+        "INCREMENT",
+        'DECREMENT',
+        'NOTEQUALS',
+        'EQUALS',
+        'GREATEREQUALS',
+        'LESSEREQUALS',
         ]
 # Keywords applicable
 reserved = {
         'if' : 'IF',
         'then' : 'THEN',
         'else' : 'ELSE',
-        'while' : 'WHILE',
+        'while' : 'WHILELOOP',
         'execute': 'EXECUTE',
-        'for' : 'FOR',
+        'for' : 'FORLOOP',
         'print' : 'PRINT',
         'number' : 'INT',
-        'string': 'STRING'
+        'string': 'STRING',
+        'bool': 'BOOLEAN',
+        'true': 'BOOLVALTRUE',
+        'false': 'BOOLVALFALSE',
+        'not': 'NEGATION',
+        'and': 'AND',
+        'or': 'OR',
+        'in': 'IN',
+        'range': 'RANGELOOP'
+
         }
 
 tokens = basic + list(reserved.values())
 
 # Regular expression rules for simple tokens
+t_INCREMENT = r'\+\+'
+t_DECREMENT = r'\-\-'
+t_EQUALS = r'\=\=' 
+t_GREATEREQUALS = r'\>\='
+t_LESSEREQUALS = r'\<\='
+t_NOTEQUALS = r'\!\='
 t_PLUS    = r'\+'
+t_MOD     = r'\%'
 t_MINUS   = r'-'
 t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
@@ -65,6 +88,7 @@ def t_VARIABLE(t):
 # A regular expression rule with some action code
 def t_NUMBER(t):
     r'\d+'
+    t.type = 'NUMBER'
     t.value = int(t.value)
     return t
 
@@ -75,6 +99,8 @@ def t_newline(t):
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
+t_ignore_COMMENT_FORWARD_SLASH = r'\/\/.*'
+t_ignore_COMMENT_HASH = r'\#.*'
 
 # Error handling rule
 def t_error(t):

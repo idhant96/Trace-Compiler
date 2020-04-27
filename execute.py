@@ -5,7 +5,7 @@ import sys
 '''
 TASKS:-
 add new token to token list - not wokring for all
-join tokenlist to a str and pass it to swi -done partial
+join tokenlist to a str and pass it to swi -done 
 pacakge the py code 
 make command line extension -done partial
 make a token test
@@ -14,7 +14,7 @@ make a token test
 
 # Init prolog
 prolog = Prolog()
-prolog.consult('./ParseTree.pl')
+prolog.consult('./src/python_project.pl')
 
 # get token rules
 rules = tokenrules.rules()
@@ -35,17 +35,36 @@ def get_tokens(filepath=None, rules=None):
         token = rules.token()
         if not token:
             break
-        if token.type == 'VARIABLE' or token.type == 'STRINGVAL':
+        if token.type == 'VARIABLE' or token.type == 'STRINGVAL' or token.type == 'NUMBER' :
             token_string += '{},'.format(token.value)
         else:
             token_string += "\'{}\',".format(token.value)
     return '[' + token_string[0:-1] + '],'
 
-tokens = get_tokens(filepath=path, rules=rules)
 
-final_string = "program(P, " + tokens + " []), eval_program(P) ."
+def main():
+    tokens = get_tokens(filepath=path, rules=rules)
 
-soln = list(prolog.query(final_string))
-print(soln)
-# for soln in prolog.query(final_string):
-#     print(soln)
+    final_string = "program(P, " + tokens + " []), eval_program(P,L) ."
+    print('final query executed: ', final_string)
+    soln = list(prolog.query(final_string))
+    if soln:
+
+        result = soln[0]['L']
+
+        if result:
+            prints_captured = len(result)
+            print('results found: ', prints_captured)
+            print('results converted to utf-8')
+            result_list= []
+            for i in range(prints_captured):
+                res = result[i].decode('utf-8')
+                print(res)
+                result_list.append(res)
+            return result_list
+    
+    print('No result found!')
+    return None
+
+if __name__ == '__main__':
+    main()

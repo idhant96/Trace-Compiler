@@ -1,9 +1,8 @@
 import os
 from lexical import tokenrules
-
+from execute import main
 
 def test_always_passes():
-    assert True
-
-def test_always_fails():
-    assert False
+    res = main()
+    print(res)
+    assert res == [0]

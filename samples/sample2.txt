@@ -1,6 +1,7 @@
 execute {
 number a; number b; 
 number c = a +b;
+string s = len("idhnat")
 
-print c ;
+print(s);
 }

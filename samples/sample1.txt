@@ -2,7 +2,7 @@ execute {
 number a; number b; 
 number c = a +b;
 
-
+print(str(c));
 }
 
 
