@@ -47,7 +47,8 @@ reserved = {
         'and': 'AND',
         'or': 'OR',
         'in': 'IN',
-        'range': 'RANGELOOP'
+        'range': 'RANGELOOP',
+        'str': 'STR'
 
         }
 
@@ -76,7 +77,7 @@ t_LESSEROPERATOR = r'<'
 
 #STRINGS
 def t_STRING(t):
-    r'\".*\"'
+    r'\".*?\"'
     t.type = 'STRINGVAL'
     return t
 
