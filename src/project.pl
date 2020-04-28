@@ -100,13 +100,13 @@ print_statement(tree_println(X)) --> [println],['('], string_expr(X), [')'].
 print_statement(tree_println_number(X)) --> [println],['('], number_expr(X), [')'].
 print_statement(tree_println_boolean(X)) --> [println],['('], bool_expr(X), [')'].
 
-eval_print_statement(tree_print(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), write_output(Val).
-eval_print_statement(tree_print_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), write_output(Val).
-eval_print_statement(tree_print_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), write_output(Val).
+eval_print_statement(tree_print(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), write(Val).
+eval_print_statement(tree_print_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), write(Val).
+eval_print_statement(tree_print_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), write(Val).
 
-eval_print_statement(tree_println(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), writeln_output(Val).
-eval_print_statement(tree_println_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), writeln_output(Val).
-eval_print_statement(tree_println_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), writeln_output(Val).
+eval_print_statement(tree_println(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), writeln(Val).
+eval_print_statement(tree_println_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), writeln(Val).
+eval_print_statement(tree_println_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), writeln(Val).
 
 %---
 
