@@ -27,6 +27,7 @@ basic = [
         'EQUALS',
         'GREATEREQUALS',
         'LESSEREQUALS',
+        'COMMA'
         ]
 # Keywords applicable
 reserved = {
@@ -100,6 +101,7 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 
+t_COMMA = r'\,'
 t_MINUS   = r'-'
 
 # Define a rule so we can track line numbers
