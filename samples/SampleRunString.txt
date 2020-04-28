@@ -1,0 +1,5 @@
+execute{
+    string a = "swarna";
+    print(a);
+    
+}
