@@ -1,0 +1,14 @@
+execute{
+    number a = 1;
+    number b = 2;
+    number c = a + b;
+    number d = a - b;
+    number e = a * b;
+    number f = a / b;
+    print(a);
+    print(b);
+    print(c);
+    print(d);
+    print(e);
+    print(f);
+}
