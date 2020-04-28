@@ -15,7 +15,7 @@ make a token test
 
 # Init prolog
 # prolog = Prolog()
-# prolog.consult('./src/python_project.pl')
+# prolog.consult('/Users/rahul5111/Desktop/SER502-Spring2020-Team22/src/project.pl')
 
 # get token rules
 rules = tokenrules.rules()
@@ -66,7 +66,7 @@ def main():
     final_string = "program(P, " + tokens + " []), eval_program(P)."
     final_string = final_string.replace('"', '\\"')
     #print('final query executed: ', final_string)
-    command = 'swipl -s ./src/project.pl -g "' + final_string + '" -g halt'
+    command = 'swipl -s /Users/rahul5111/Desktop/SER502-Spring2020-Team22/src/project.pl -g "' + final_string + '" -g halt'
     #print("command is: " + command)
     stream = os.popen(command)
     output = stream.read()
