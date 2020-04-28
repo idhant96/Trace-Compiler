@@ -91,12 +91,21 @@ eval_statement(tree_statement_increment(X), Env,EnvR,Scope) :- lookup_for_previo
 eval_statement(tree_statement_decrement(X), Env,EnvR,Scope) :- lookup_for_previous_scope(X,Env,Scope,Val), Sub is Val - 1, find_scope(X,Env,Scope,ActualScope), update(X,Sub,ActualScope,Env,EnvR).
 
 %---
-
 print_statement(tree_print(X)) --> [print],['('], string_expr(X), [')'].
-print_statement(tree_println(X)) --> [println],['('], string_expr(X), [')'].
+print_statement(tree_print_number(X)) --> [print],['('], number_expr(X), [')'].
+print_statement(tree_print_boolean(X)) --> [print],['('], bool_expr(X), [')'].
 
-eval_print_statement(tree_print(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val),  write_output(Val).
-eval_print_statement(tree_println(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val),  writeln_output(Val).
+print_statement(tree_println(X)) --> [println],['('], string_expr(X), [')'].
+print_statement(tree_println_number(X)) --> [println],['('], number_expr(X), [')'].
+print_statement(tree_println_boolean(X)) --> [println],['('], bool_expr(X), [')'].
+
+eval_print_statement(tree_print(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), write_output(Val).
+eval_print_statement(tree_print_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), write_output(Val).
+eval_print_statement(tree_print_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), write_output(Val).
+
+eval_print_statement(tree_println(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), writeln_output(Val).
+eval_print_statement(tree_println_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), writeln_output(Val).
+eval_print_statement(tree_println_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), writeln_output(Val).
 
 %---
 
