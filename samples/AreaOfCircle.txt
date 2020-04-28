@@ -1,0 +1,10 @@
+execute{
+    
+    number PI = 3.142;
+    number r = 3; 
+    number area = PI * r * r;
+  
+# Driver method 
+print("Area" + str(area)); 
+  
+}
