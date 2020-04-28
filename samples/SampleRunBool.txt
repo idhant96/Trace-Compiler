@@ -1,0 +1,12 @@
+execute{
+    bool a = true;
+    bool b = false;
+    bool c = a and b;
+    bool d = a or b;
+    bool e = not a;
+    print(a);
+    print(b);
+    print(c);
+    print(d);
+    print(e);
+}

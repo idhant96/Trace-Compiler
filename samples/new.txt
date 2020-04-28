@@ -1,0 +1,4 @@
+execute {
+print("a");
+println("a");
+}

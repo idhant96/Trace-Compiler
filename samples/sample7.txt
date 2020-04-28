@@ -1,6 +1,7 @@
 execute{
-    number a =120;
-    number b;
+<<<<<<< HEAD
+    number a=1;
+    number b=10;
     number c = a + b;
     if(c >10) then {
         print("swarna");

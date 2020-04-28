@@ -1,0 +1,14 @@
+execute{
+    number num = 407;
+	if (num > 1) then{
+    	for i in range(2,num){
+        	if (num % i == 0) then{
+        		print("not a prime number");
+        	}
+        	if(i==num) then{
+			print("is a prime number");
+        	}
+           
+    	}
+	}
+}
