@@ -3,5 +3,5 @@ execute{
     number n = 2;
     number r = 3;
     number si = (p * t * r)/100;
-    print('The Simple Interest is ' + str(si)) ;
+    print("The Simple Interest is " + str(si)) ;
 } 

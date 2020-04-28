@@ -1,7 +1,7 @@
 execute {
-number a; number b; 
-number c = a +b;
-string s = len("idhnat")
-
+number a; 
+number b; 
+number c = a + b;
+number s = len("idhnat");
 print(s);
 }

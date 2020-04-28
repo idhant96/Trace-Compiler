@@ -1,20 +1,22 @@
-from pyswip import Prolog
+#from pyswip import Prolog
 from lexical import tokenrules
 import sys
+import os
+
 
 '''
 TASKS:-
 add new token to token list - not wokring for all
-join tokenlist to a str and pass it to swi -done 
-pacakge the py code 
+join tokenlist to a str and pass it to swi -done
+pacakge the py code
 make command line extension -done partial
 make a token test
 
 '''
 
 # Init prolog
-prolog = Prolog()
-prolog.consult('./src/python_project.pl')
+# prolog = Prolog()
+# prolog.consult('./src/python_project.pl')
 
 # get token rules
 rules = tokenrules.rules()
@@ -45,9 +47,18 @@ def get_tokens(filepath=None, rules=None):
 def main():
     tokens = get_tokens(filepath=path, rules=rules)
 
-    final_string = "program(P, " + tokens + " []), eval_program(P,L) ."
+    final_string = "program(P, " + tokens + " []), eval_program(P,L), writeln(L)."
+    #final_string = "program(P, " + tokens + " []), writeln(P)."
+    '''swipl -s ./src/python_project.pl -g "program(P, ['execute','{','println','(',\"a\",')',';',print,'(',\"the sum \", + , str ,'(', 10,+,12,')',')',';','}'], []), eval_program(P, L), writeln(L)" -g halt'''
+
+    final_string = final_string.replace('"', '\\"')
     print('final query executed: ', final_string)
-    soln = list(prolog.query(final_string))
+    command = 'swipl -s ./src/python_project.pl -g "' + final_string + '" -g halt'
+    print("command is: " + command)
+    stream = os.popen(command)
+    output = stream.read()
+    print(output)
+    '''soln = list(prolog.query(final_string))
     if soln:
 
         result = soln[0]['L']
@@ -61,8 +72,8 @@ def main():
                 res = result[i].decode('utf-8')
                 print(res)
                 result_list.append(res)
-            return result_list
-    
+            return result_list'''
+
     print('No result found!')
     return None
 
