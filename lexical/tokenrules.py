@@ -4,6 +4,7 @@ import ply.lex as lex
 # List of token names.   This is always required
 basic = [
         'NUMBER',
+        'DECIMAL',
         'PLUS',
         'MINUS',
         'TIMES',
@@ -60,7 +61,7 @@ t_LESSEREQUALS = r'\<\='
 t_NOTEQUALS = r'\!\='
 t_PLUS    = r'\+'
 t_MOD     = r'\%'
-t_MINUS   = r'-'
+
 t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
 t_ASSIGNMENT  = r'='
@@ -85,12 +86,21 @@ def t_VARIABLE(t):
     t.type = reserved.get(t.value,'VARIABLE')  
     return t
 
+# decimal numbers
+def t_DECIMAL(t):
+    r'-?\d+\.\d+'
+    t.type = 'NUMBER'
+    t.value = float(t.value)
+    return t
+
 # A regular expression rule with some action code
 def t_NUMBER(t):
-    r'\d+'
+    r'-?\d+'
     t.type = 'NUMBER'
     t.value = int(t.value)
     return t
+
+t_MINUS   = r'-'
 
 # Define a rule so we can track line numbers
 def t_newline(t):
@@ -100,7 +110,7 @@ def t_newline(t):
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t'
 t_ignore_COMMENT_FORWARD_SLASH = r'\/\/.*'
-t_ignore_COMMENT_HASH = r'\#.*'
+# t_ignore_COMMENT_HASH = r'\#.*'
 
 # Error handling rule
 def t_error(t):
