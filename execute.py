@@ -67,6 +67,7 @@ def main():
     final_string = final_string.replace('"', '\\"')
     #print('final query executed: ', final_string)
     command = 'swipl -s ./src/project.pl -g "' + final_string + '" -g halt'
+    #print(command)
     #print("command is: " + command)
     stream = os.popen(command)
     output = stream.read()
