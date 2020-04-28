@@ -100,13 +100,13 @@ print_statement(tree_println(X)) --> [println],['('], string_expr(X), [')'].
 print_statement(tree_println_number(X)) --> [println],['('], number_expr(X), [')'].
 print_statement(tree_println_boolean(X)) --> [println],['('], bool_expr(X), [')'].
 
-eval_print_statement(tree_print(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), write_output(Val).
-eval_print_statement(tree_print_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), write_output(Val).
-eval_print_statement(tree_print_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), write_output(Val).
+eval_print_statement(tree_print(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), write(Val).
+eval_print_statement(tree_print_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), write(Val).
+eval_print_statement(tree_print_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), write(Val).
 
-eval_print_statement(tree_println(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), writeln_output(Val).
-eval_print_statement(tree_println_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), writeln_output(Val).
-eval_print_statement(tree_println_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), writeln_output(Val).
+eval_print_statement(tree_println(X), Env, Scope) :- eval_stringExp(X, Env, Scope, Val), writeln(Val).
+eval_print_statement(tree_println_number(X), Env, Scope) :- eval_numberExp(X, Env, Scope, Val), writeln(Val).
+eval_print_statement(tree_println_boolean(X), Env, Scope) :- eval_boolExp(X, Env, Scope, Val), writeln(Val).
 
 %---
 
@@ -167,7 +167,9 @@ eval_numberExp(tree_subtract(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Sc
 eval_numberExp(X, Env, Scope, Val) :- eval_level1(X, Env, Scope, Val).
 
 eval_level1(tree_multiplication(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2), Val is Val1 * Val2.
-eval_level1(tree_division(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2), Val is Val1 / Val2.
+eval_level1(tree_division(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2),Val2\=0, Val is Val1 / Val2.
+eval_level1(tree_division(X,Y), Env, Scope, _) :- eval_numberExp(X, Env, Scope, _), eval_level2(Y, Env, Scope, Val2),Val2 = 0,writeln(" Exception: Divide By 0"), false.
+
 eval_level1(tree_mod(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2), Val is mod(Val1, Val2).
 eval_level1(X, Env, Scope, Val) :- eval_level2(X, Env, Scope, Val).
 eval_level2(tree_braces(X), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val).
