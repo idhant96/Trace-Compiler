@@ -11,7 +11,6 @@ join tokenlist to a str and pass it to swi -done
 pacakge the py code
 make command line extension -done partial
 make a token test
-
 '''
 
 # Init prolog
@@ -22,7 +21,7 @@ make a token test
 rules = tokenrules.rules()
 
 #path of file to process
-path = sys.argv[1]
+main_var = sys.argv[1]
 
 def get_tokens(filepath=None, rules=None):
     if not filepath:
@@ -37,7 +36,7 @@ def get_tokens(filepath=None, rules=None):
         token = rules.token()
         if not token:
             break
-        if token.type == 'VARIABLE' or token.type == 'STRINGVAL' or token.type == 'NUMBER' :
+        if token.type == 'STRINGVAL' or token.type == 'NUMBER' :
             token_string += '{},'.format(token.value)
         else:
             token_string += "\'{}\',".format(token.value)
@@ -45,7 +44,7 @@ def get_tokens(filepath=None, rules=None):
 
 
 def main():
-    tokens = get_tokens(filepath=path, rules=rules)
+    tokens = get_tokens(filepath=main_var, rules=rules)
 
     final_string = "program(P, " + tokens + " []), eval_program(P,L), writeln(L)."
     #final_string = "program(P, " + tokens + " []), writeln(P)."
@@ -60,16 +59,15 @@ def main():
     print(output)
     '''soln = list(prolog.query(final_string))
     if soln:
-
         result = soln[0]['L']
 
         if result:
             prints_captured = len(result)
             print('results found: ', prints_captured)
-            print('results converted to utf-8')
+            print('results converted to utf-8') # check for
             result_list= []
             for i in range(prints_captured):
-                res = result[i].decode('utf-8')
+                res = result[i]
                 print(res)
                 result_list.append(res)
             return result_list'''

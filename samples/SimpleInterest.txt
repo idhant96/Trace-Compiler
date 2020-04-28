@@ -2,6 +2,7 @@ execute{
     number p = 1;
     number n = 2;
     number r = 3;
+    number t =2;
     number si = (p * t * r)/100;
     print("The Simple Interest is " + str(si)) ;
 } 

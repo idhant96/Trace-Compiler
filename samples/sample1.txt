@@ -1,8 +1,8 @@
 execute {
-number a; number b; 
+number a=2; number b; 
 number c = a +b;
 
-print(str(c));
+print(str(a));
 }
 
 
