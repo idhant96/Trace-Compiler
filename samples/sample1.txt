@@ -2,7 +2,8 @@ execute {
 number a=2; number b; 
 number c = a +b;
 
-print(str(a));
+println(str(a));
+print(10);
 }
 
 

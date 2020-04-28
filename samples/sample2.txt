@@ -1,5 +1,4 @@
 execute {
-<<<<<<< HEAD
 number a; 
 number b; 
 number c = a + b;
