@@ -27,6 +27,7 @@ basic = [
         'EQUALS',
         'GREATEREQUALS',
         'LESSEREQUALS',
+        'COMMA'
         ]
 # Keywords applicable
 reserved = {
@@ -46,7 +47,8 @@ reserved = {
         'and': 'AND',
         'or': 'OR',
         'in': 'IN',
-        'range': 'RANGELOOP'
+        'range': 'RANGELOOP',
+        'str': 'STR'
 
         }
 
@@ -75,7 +77,7 @@ t_LESSEROPERATOR = r'<'
 
 #STRINGS
 def t_STRING(t):
-    r'\".*\"'
+    r'\".*?\"'
     t.type = 'STRINGVAL'
     return t
 
@@ -100,6 +102,7 @@ def t_NUMBER(t):
     t.value = int(t.value)
     return t
 
+t_COMMA = r'\,'
 t_MINUS   = r'-'
 
 # Define a rule so we can track line numbers

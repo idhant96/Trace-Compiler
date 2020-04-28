@@ -258,8 +258,8 @@ string_expr(tree_convert_boolean(X)) --> [str],['('], bool_expr(X), [')'].
 string_expr(tree_concat(X,Y)) --> string_expr(X), ['+'], string_expr(Y).
 
 eval_stringExp(tree_string(X), _, _, X).
-eval_stringExp(tree_string_var(X), Env, Scope, Val) :- lookup_for_previous_scope(X, Env, Scope, Val), string(Val).
-eval_stringExp(tree_string_var(X), Env, Scope, Val) :- lookup_for_previous_scope(X, Env, Scope, Val), not(string(Val)), string_concat(X, " : is not of type string", M), writeException(M), false.
+eval_stringExp(tree_string_var(X), Env, Scope, Val) :- lookup_for_previous_scope(X, Env, Scope, Val).
+eval_stringExp(tree_string_var(X), Env, Scope, Val) :- not(lookup_for_previous_scope(X, Env, Scope, Val)), string_concat(X, " : is not declared", M), writeException(M), false.
 eval_stringExp(tree_string_concat(X,Y), Env, Scope, Val) :- eval_stringExp(X, Env, Scope, Val1), eval_stringExp(Y, Env, Scope, Val2), string_concat(Val1, Val2, Val).
 eval_stringExp(tree_convert_number(X), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), number_string(Val1, Val).
 eval_stringExp(tree_convert_boolean(X), Env, Scope, Val) :- eval_boolExp(X, Env, Scope, Val1), bool_string(Val1, Val).
