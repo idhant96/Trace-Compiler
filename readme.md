@@ -29,6 +29,8 @@ Install Insctructions
 Future Scope 
 ======
 1. Provide a .trace support
+2. Publish project to pypi.
+3. Support Error Prediction(Already in experimental phase).
 
 
 
