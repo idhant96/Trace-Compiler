@@ -1,0 +1,14 @@
+execute{
+    number x = 5;
+number y = 10;
+
+
+y = x - y;
+x = x - y;
+
+print(y);
+//x = y + x;
+print("x =" + str(x));
+print("y =" + str(y));
+
+}
