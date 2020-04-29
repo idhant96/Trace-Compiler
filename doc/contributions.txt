@@ -1,3 +1,4 @@
+Milestone 1 
 Contributions
 
 Team members: 
@@ -29,4 +30,30 @@ Helped in designing the grammar for the compiler.
 Researched on the Lexical Parser(Tokenization) part of the compiler. 
 Using python to tokenize the string part of the compiler. 
 Using python to run prolog files which execute the tokenized string list we generated. After phase 1 part of the project, I plan to use a tool for lexical parsing the input program. 
+
+Milestone 2 - Trace
+
+Idhant haldankar
+Formulated Token Rules for the language trace.
+Worked on implementing lexical analyser for language tree.
+Worked towards testing and debugging of the lexical analyser.
+Worked on developing the runtime environment.
+
+Swarnalatha Srenigarajan: 
+Formulated DCG for the language trace
+Created parse tree for the language trace
+Worked towards testing and debugging of the lexical analyser and semantic analyser
+Worked on developing the runtime environment 
+
+Rahul Suresh
+Worked on evaluating the parse tree generated
+Worked on debugging and testing the output provided by the semantic analyser devised. 
+Worked on developing the runtime environment 
+
+Akhilesh Krishnan
+Worked on evaluating the parse tree generated
+Worked on debugging and testing the output provided by the semantic analyser devised. 
+Worked on developing the runtime environment 
+
+
 
