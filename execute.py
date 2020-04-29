@@ -2,7 +2,9 @@
 from lexical import tokenrules
 import sys
 import os
+import subprocess as sp
 
+os.chdir('/home/idhant96/projects/SER02-Spring2020-Team22/')
 
 '''
 TASKS:-
@@ -66,12 +68,14 @@ def main():
     final_string = "program(P, " + tokens + " []), eval_program(P)."
     final_string = final_string.replace('"', '\\"')
     #print('final query executed: ', final_string)
-    command = 'swipl -s /Users/rahul5111/Desktop/SER502-Spring2020-Team22/src/project.pl -g "' + final_string + '" -g halt'
-    #print(command)
+    command = 'swipl -s ./src/project.pl -g "' + final_string + '" -g halt'
+    # print(command)
     #print("command is: " + command)
-    stream = os.popen(command)
-    output = stream.read()
-
+    # stream = os.popen(command)
+   
+    stream = sp.check_output(command, shell=True)
+    # output = stream.read()
+    input(stream)
     finalOutput = extractOutput(output)
     if len(finalOutput) > 0:
         print(finalOutput)
