@@ -3,7 +3,7 @@ number a = 10;
 bool b = true;
 string s = "String";
 
-
+print("no new line");
 
 println(a);
 println(b);
@@ -17,7 +17,7 @@ println("String22");
 println(a + b + s);
 println(str(10) + " convert int constant to string");
 print(str(true) + " convert bool constant to string");
-println(str(b) + " not necessary to convert variables of any type to string");
+println(b + " not necessary to convert variables of any type to string");
 
 
 }

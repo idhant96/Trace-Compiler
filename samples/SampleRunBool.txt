@@ -16,10 +16,10 @@ execute{
    }
 
 
-//    println(a);
-//    println(b);
-//    println(c);
-//    println(d);
-//    println(e);
+    println(a);
+    println(b);
+    println(c);
+    println(d);
+    println(e);
 
 }
