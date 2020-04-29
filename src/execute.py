@@ -1,6 +1,7 @@
 #Author : Idhant
 #Purpose : this file defines the token rules
 #Date : 24th April 2020
+#Version : 2
 
 from lexical import tokenrules
 import sys, traceback
