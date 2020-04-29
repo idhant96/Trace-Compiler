@@ -4,9 +4,9 @@ execute{
     bool c = a and b;
     bool d = a or b;
     bool e = not a;
-    print(a);
-    print(b);
-    print(c);
-    print(d);
-    print(e);
+    println(a);
+    println(b);
+    println(c);
+    println(d);
+    println(e);
 }

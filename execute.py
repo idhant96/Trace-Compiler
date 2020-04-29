@@ -1,10 +1,10 @@
 #from pyswip import Prolog
 from lexical import tokenrules
-import sys
+import sys, traceback
 import os
 import subprocess as sp
 
-os.chdir('/home/idhant96/projects/SER02-Spring2020-Team22/')
+#os.chdir('/home/idhant96/projects/SER02-Spring2020-Team22/')
 
 '''
 TASKS:-
@@ -66,24 +66,38 @@ def main():
     #final_string = "program(P, " + tokens + " []), eval_program(P,L), writeln(L)."
 
     #swipl -s ./src/python_project.pl -g "program(P, ['execute','{','println','(',\"a\",')',';',print,'(',\"the sum \", + , str ,'(', 10,+,12,')',')',';','}'], []), eval_program(P, L), writeln(L)" -g halt
-    final_string = "program(P, " + tokens + " []), eval_program(P)."
-    final_string = final_string.replace('"', '\\"')
-    #print('final query executed: ', final_string)
-    command = 'swipl -s ./src/project.pl -g "' + final_string + '" -g halt'
+
     # print(command)
     #print("command is: " + command)
     # stream = os.popen(command)
+    syntax_predicate = "program(P, " + tokens + " [])."
+    syntax_predicate = syntax_predicate.replace('"', '\\"')
+    command = 'swipl -s ./src/project.pl -g "' + syntax_predicate + '" -g halt'
+    ec, outpu = sp.getstatusoutput(command)
+    if ec > 0 :
+        print("[Exception]: SyntaxError")
+        return None
 
-    stream = sp.check_output(command, shell=True).decode('utf-8')
+    eval_predicate = "program(P, " + tokens + " []), eval_program(P)."
+    eval_predicate = eval_predicate.replace('"', '\\"')
+    command = 'swipl -s ./src/project.pl -g "' + eval_predicate + '" -g halt'
+    try:
+        #stream = sp.check_output(command, shell=True).decode('utf-8')
+        process = sp.Popen(command, stdout=sp.PIPE, stderr=None, shell=True)
+        output = process.communicate()
+        finalOutput = extractOutput(output[0].decode('utf-8'))
+        # input()
+        if len(finalOutput) > 0:
+            print(finalOutput)
+        else:
+            print('No result found!')
+    except:
+        print("[Exception] Internal Error")
+
     # input(stream)
     # output = str(stream)
     # input(stream)
-    finalOutput = extractOutput(stream)
-    # input()
-    if len(finalOutput) > 0:
-        print(finalOutput)
-    else:
-        print('No result found!')
+
 
     # soln = list(prolog.query(final_string))
     # if soln:

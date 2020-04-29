@@ -40,7 +40,7 @@ booleanDeclaration(tree_boolDecl(X,Y)) --> [bool], var_name(X), ['='], bool_expr
 booleanDeclaration(tree_boolDecl(X)) --> [bool], var_name(X).
 
 
-eval_booleanDeclaration(tree_boolDecl(X,Y),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)),eval_boolExp(Y,Env,Scope,Val), update(X,Val,Scope,Env, EnvR).
+eval_booleanDeclaration(tree_boolDecl(X,Y),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)),eval_boolExp(Y,Val, Env,Scope), update(X,Val,Scope,Env, EnvR).
 eval_booleanDeclaration(tree_boolDecl(X,_),Env,Env,Scope):- lookup(X,Env,Scope,_), string_concat(X, " : Variable already declared", M), writeException(M), false.
 
 eval_booleanDeclaration(tree_boolDecl(X),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)), update(X,false,Scope,Env,EnvR).
@@ -112,15 +112,15 @@ eval_print_statement(tree_println_boolean(X), Env, Scope) :- eval_boolExp(X, Env
 
 /* Looping Statements -> (for loop, for in range() loop and while loop ) */
 loopStatement(tree_simpleFOR(X,Y,Z,A)) --> [for], ['('], declaration(X), [';'], bool_expr(Y) , [';'], statement(Z), [')'], block(A).
-loopStatement(tree_rangeFOR(X,Y,Z,A)) --> [for], var_name(X), [in], [range], ['('], number(Y), [','], number(Z) ,[')'], block(A).
+loopStatement(tree_rangeFOR(X,Y,Z,A)) --> [for], var_name(X), [in], [range], ['('], number_expr(Y), [','], number_expr(Z) ,[')'], block(A).
 loopStatement(tree_while(X,Y)) --> [while],['('], bool_expr(X) ,[')'], block(Y).
 
 
 eval_loopStatement(tree_simpleFOR(X,Y,Z,A), Env, EnvR, Scope) :- Scope1 is Scope + 1, eval_declaration(X, Env, Env1, Scope1),
     eval_loopWithStatement(Y, Z, A, Env1, Env2, Scope1), deleteScopeVariables(Env2,Scope1,EnvR).
 
-eval_loopStatement(tree_rangeFOR(X,Y,Z,A), Env, EnvR, Scope) :- eval_loopStatement(tree_simpleFOR(tree_decl_number(tree_numDecl(X,tree_num(Y))),
-                                                                                                  tree_lesser(tree_variable(X),tree_num(Z)),
+eval_loopStatement(tree_rangeFOR(X,Y,Z,A), Env, EnvR, Scope) :- eval_numberExp(Y, Env,Scope, YVal), eval_numberExp(Z, Env,Scope, ZVal), eval_loopStatement(tree_simpleFOR(tree_decl_number(tree_numDecl(X,tree_num(YVal))),
+                                                                                                  tree_lesser(tree_variable(X),tree_num(ZVal)),
                                                                                                   tree_statement_increment(X), A), Env, EnvR, Scope).
 
 eval_loopStatement(tree_while(X,Y),Env,EnvR,Scope):- eval_boolExp(X,Env,Scope,Val),Val = true, eval_block(Y, Env, Env1, Scope),eval_loopStatement(tree_while(X,Y),Env1,EnvR,Scope).
@@ -166,9 +166,7 @@ eval_numberExp(tree_subtract(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Sc
 eval_numberExp(X, Env, Scope, Val) :- eval_level1(X, Env, Scope, Val).
 
 eval_level1(tree_multiplication(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2), Val is Val1 * Val2.
-eval_level1(tree_division(X,Y), Env, Scope, _) :- eval_numberExp(X, Env, Scope, _), eval_level2(Y, Env, Scope, Val2),Val2 = 0, string_concat(Val2, " is the divisor; Exception : Divide by 0", M), writeException(M), false.
-eval_level1(tree_division(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2),Val2\=0, Val is Val1 / Val2.
-
+eval_level1(tree_division(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2), Val is Val1 / Val2.
 eval_level1(tree_mod(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_level2(Y, Env, Scope, Val2), Val is mod(Val1, Val2).
 eval_level1(X, Env, Scope, Val) :- eval_level2(X, Env, Scope, Val).
 
@@ -198,14 +196,14 @@ bool_expr(tree_notEqualBool(X,Y)) --> bool_expr(X), ['!='], bool_expr(Y).
 
 
 bool_expr(tree_variable(X))  --> var_name(X).
-bool_expr(tree_boolean(true)) --> ['true'].
-bool_expr(tree_boolean(false)) --> ['false'].
+bool_expr(tree_true(true)) --> ['true'].
+bool_expr(tree_false(false)) --> ['false'].
 
 
 
-eval_boolExp(tree_boolean(true), _, _, true).
-eval_boolExp(tree_boolean(false), _, _, false).
-eval_boolExp(tree_variable(X), Env, Scope, Val) :- eval_variable(X, Env, Scope, Val).
+eval_boolExp(t_boolean(true), _, _, true).
+eval_boolExp(t_boolean(false), _, _, false).
+eval_boolExp(t_variable(X), Env, Scope, Val) :- eval_variable(X, Env, Scope, Val).
 
 eval_boolExp(tree_not(X), Env, Scope, Val) :- eval_boolExp(X, Env, Scope, Val1), eval_boolean_not(Val1, Env, Scope, Val).
 
@@ -267,13 +265,7 @@ eval_stringExp(tree_concat(X,Y),Env,Scope,Val):- eval_stringExp(X, Env, Scope, V
 bool_string(true, "true").
 bool_string(false, "false").
 
-validate_varname(X):- L = [true, false, and ,or , not, for ,while], inList(X, L, Val), Val = false.
-
-inList(X, [H|_], Val):- X = H, Val = true.
-inList(_,[],false).
-inList(X, [H|T], Val):- X \=H, inList(X,T,Val).
-
-var_name(X) --> [X], {validate_varname(X), atom(X)}.
+var_name(X) --> [X], {atom(X)}.
 eval_variable(X, Env, Scope, Val) :- lookup_for_previous_scope(X, Env, Scope, Val).
 eval_variable(X, Env, Scope, Val) :- not(lookup_for_previous_scope(X, Env, Scope, Val)),  string_concat(X, " : Variable is not declared", M), writeException(M), false.
 

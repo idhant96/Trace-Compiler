@@ -6,9 +6,9 @@ number y = 10;
 y = x - y;
 x = x - y;
 
-print(y);
-//x = y + x;
-print("x =" + str(x));
-print("y =" + str(y));
+println(y);
+x = y + x;
+println("x =" + str(x));
+println("y =" + str(y));
 
 }

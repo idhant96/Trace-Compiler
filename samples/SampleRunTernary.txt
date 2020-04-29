@@ -1,5 +1,5 @@
 execute{
     number b = 10;
-    (b>0) ? print("Positive"): print("Negative");
+    b > 0 ? print("Positive"): print("Negative");
     
 }

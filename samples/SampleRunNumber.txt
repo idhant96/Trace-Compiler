@@ -5,10 +5,10 @@ execute{
     number d = a - b;
     number e = a * b;
     number f = a / b;
-    print(a);
-    print(b);
-    print(c);
-    print(d);
-    print(e);
-    print(f);
+    println(a);
+    println(b);
+    println(c);
+    println(d);
+    println(e);
+    println(f);
 }

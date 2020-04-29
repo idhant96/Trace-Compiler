@@ -1,0 +1,6 @@
+execute {
+
+for i in range (2,20) {
+	println(i);
+}
+}
