@@ -17,4 +17,4 @@ fi
 
 brew install swi-prolog
 
-
+pip install -r requirements.txt
