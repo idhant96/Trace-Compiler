@@ -2,17 +2,6 @@ Trace Compiler
 ===============
 
 
-System on which your compiler and runtime are built (GNUstep, Linux, Unix,
-Windows or Mac OS)
-o Tools used
-o Directions/instructions to install your language
-o Directions/instructions to build and run your language (compiler/runtime).
-o ONE LINE of bash script that builds the compiler and ONE LINE that runs the
-runtime.
-o Link to the YouTube video
-
-
-
 > A Language inspired by trace(debug) feature of the robust Language known as Prolog. 
 
 ********************************************
