@@ -72,7 +72,7 @@ def main():
     # print(command)
     #print("command is: " + command)
     # stream = os.popen(command)
-   
+
     stream = sp.check_output(command, shell=True)
     # output = stream.read()
     input(stream)
