@@ -70,8 +70,9 @@ def main():
     # print(command)
     #print("command is: " + command)
     # stream = os.popen(command)
-    syntax_predicate = "program(P, " + tokens + " [])."
+
     #print(syntax_predicate)
+    syntax_predicate = "program(P, " + tokens + " [])."
     syntax_predicate = syntax_predicate.replace('"', '\\"')
     command = 'swipl -s ./src/project.pl -g "' + syntax_predicate + '" -g halt'
     ec, outpu = sp.getstatusoutput(command)
