@@ -1,6 +1,18 @@
 Trace Compiler
 ===============
 
+
+System on which your compiler and runtime are built (GNUstep, Linux, Unix,
+Windows or Mac OS)
+o Tools used
+o Directions/instructions to install your language
+o Directions/instructions to build and run your language (compiler/runtime).
+o ONE LINE of bash script that builds the compiler and ONE LINE that runs the
+runtime.
+o Link to the YouTube video
+
+
+
 > A Language inspired by trace(debug) feature of the robust Language known as Prolog. 
 
 ********************************************
@@ -11,10 +23,17 @@ Tools Used
 1. [Ply](https://www.dabeaz.com/ply/)
 2. [libswip](https://github.com/SWI-Prolog/packages-jpl/wiki/Installing-&-Using-JPL-in-MacOs)
 
-Languages Used
+
+Directions/instructions to install your language
+------------
+* We need to install Python package requirements and SWI Prolog Libraries.
+
+Directions/instructions to build and run your language (compiler/runtime).
 -----------
-1. Python
-2. Swi-Prolog
+* Run execute.py passing the file to be processed (.txt format).
+* Example Script
+    > python execute.py data/sampleprogram.txt
+
 
 Install Insctructions
 ---------------
@@ -31,6 +50,11 @@ Future Scope
 1. Provide a .trace support
 2. Publish project to pypi.
 3. Support Error Prediction(Already in experimental phase).
+
+Link to the YouTube video
+======
+Please take a look at our Awesome Language! 
+>[Trace] ()
 
 
 
