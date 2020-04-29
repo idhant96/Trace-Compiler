@@ -40,7 +40,7 @@ booleanDeclaration(tree_boolDecl(X,Y)) --> [bool], var_name(X), ['='], bool_expr
 booleanDeclaration(tree_boolDecl(X)) --> [bool], var_name(X).
 
 
-eval_booleanDeclaration(tree_boolDecl(X,Y),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)),eval_boolExp(Y,Val, Env,Scope), update(X,Val,Scope,Env, EnvR).
+eval_booleanDeclaration(tree_boolDecl(X,Y),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)),eval_boolExp(Y,Env,Scope,Val), update(X,Val,Scope,Env, EnvR).
 eval_booleanDeclaration(tree_boolDecl(X,_),Env,Env,Scope):- lookup(X,Env,Scope,_), string_concat(X, " : Variable already declared", M), writeException(M), false.
 
 eval_booleanDeclaration(tree_boolDecl(X),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)), update(X,false,Scope,Env,EnvR).
@@ -198,14 +198,14 @@ bool_expr(tree_notEqualBool(X,Y)) --> bool_expr(X), ['!='], bool_expr(Y).
 
 
 bool_expr(tree_variable(X))  --> var_name(X).
-bool_expr(tree_true(true)) --> ['true'].
-bool_expr(tree_false(false)) --> ['false'].
+bool_expr(tree_boolean(true)) --> ['true'].
+bool_expr(tree_boolean(false)) --> ['false'].
 
 
 
-eval_boolExp(t_boolean(true), _, _, true).
-eval_boolExp(t_boolean(false), _, _, false).
-eval_boolExp(t_variable(X), Env, Scope, Val) :- eval_variable(X, Env, Scope, Val).
+eval_boolExp(tree_boolean(true), _, _, true).
+eval_boolExp(tree_boolean(false), _, _, false).
+eval_boolExp(tree_variable(X), Env, Scope, Val) :- eval_variable(X, Env, Scope, Val).
 
 eval_boolExp(tree_not(X), Env, Scope, Val) :- eval_boolExp(X, Env, Scope, Val1), eval_boolean_not(Val1, Env, Scope, Val).
 
@@ -267,7 +267,13 @@ eval_stringExp(tree_concat(X,Y),Env,Scope,Val):- eval_stringExp(X, Env, Scope, V
 bool_string(true, "true").
 bool_string(false, "false").
 
-var_name(X) --> [X], {atom(X)}.
+validate_varname(X):- L = [true, false, and ,or , not, for ,while], inList(X, L, Val), Val = false.
+
+inList(X, [H|_], Val):- X = H, Val = true.
+inList(_,[],false).
+inList(X, [H|T], Val):- X \=H, inList(X,T,Val).
+
+var_name(X) --> [X], {validate_varname(X), atom(X)}.
 eval_variable(X, Env, Scope, Val) :- lookup_for_previous_scope(X, Env, Scope, Val).
 eval_variable(X, Env, Scope, Val) :- not(lookup_for_previous_scope(X, Env, Scope, Val)),  string_concat(X, " : Variable is not declared", M), writeException(M), false.
 
