@@ -1,0 +1,5 @@
+execute{
+for (number i = 0; i < 5; i++) {
+  println(i);
+}
+}
