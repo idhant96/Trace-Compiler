@@ -1,6 +1,7 @@
+
+%Authors: Rahul Suresh, Akhilesh Krishnan, SwarnaLatha
 :- table number_expr/3, level_1/3, level_2/3, bool_expr/3, string_expr/3.
-%:- set_prolog_flag(verbose, silent).
-%:- use_rendering(svgtree).
+
 
 program(X)  --> [execute], block(X).
 
@@ -310,8 +311,7 @@ writeException(Val) :- string_concat("[EXP_##][Exception]:- ", Val, R), writeln(
 writeln_output(Val) :- string_concat("[OP_##]", Val, R), writeln(R).
 write_output(Val) :- string_concat("[OP_##]", Val, R), write(R).
 
-%update_for_previous_scope(Id, Val, Scope, Env, EnvR) :- update(Id, Val, Scope, Env, EnvR).
-%update_for_previous_scope(Id, Val, Scope, Env, EnvR) :- not(update(Id, Val, Scope, Env, _)), Scope1 is Scope -1, update_for_previous_scope(Id, Val, Env, Scope1, EnvR).
+
 
 
 
