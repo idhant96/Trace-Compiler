@@ -27,7 +27,9 @@ basic = [
         'EQUALS',
         'GREATEREQUALS',
         'LESSEREQUALS',
-        'COMMA'
+        'COMMA',
+        'QUESTION',
+        'COLON'
         ]
 # Keywords applicable
 reserved = {
@@ -63,7 +65,8 @@ t_LESSEREQUALS = r'\<\='
 t_NOTEQUALS = r'\!\='
 t_PLUS    = r'\+'
 t_MOD     = r'\%'
-
+t_QUESTION = r'\?'
+t_COLON = r'\:'
 t_TIMES   = r'\*'
 t_DIVIDE  = r'/'
 t_ASSIGNMENT  = r'='
