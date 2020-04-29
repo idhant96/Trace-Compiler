@@ -1,0 +1,23 @@
+execute {
+number a = 10;
+bool b = true;
+string s = "String";
+
+
+
+println(a);
+println(b);
+println(s);
+
+println(10);
+println(false);
+println("String22");
+
+
+println(a + b + s);
+println(str(10) + " convert int constant to string");
+print(str(true) + " convert bool constant to string");
+println(str(b) + " not necessary to convert variables of any type to string");
+
+
+}

@@ -71,6 +71,7 @@ def main():
     #print("command is: " + command)
     # stream = os.popen(command)
     syntax_predicate = "program(P, " + tokens + " [])."
+    #print(syntax_predicate)
     syntax_predicate = syntax_predicate.replace('"', '\\"')
     command = 'swipl -s ./src/project.pl -g "' + syntax_predicate + '" -g halt'
     ec, outpu = sp.getstatusoutput(command)
@@ -89,8 +90,6 @@ def main():
         # input()
         if len(finalOutput) > 0:
             print(finalOutput)
-        else:
-            print('No result found!')
     except:
         print("[Exception] Internal Error")
 

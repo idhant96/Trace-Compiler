@@ -1,0 +1,16 @@
+execute{
+
+	for (number i = 10; i < 100 ; i++){
+		bool prime = true;
+		for ( number j = 2; j < i ; j++) {
+			if((i % j) ==0) then {
+				prime =false;
+				j=i+1;
+			}
+		}
+		if(prime == true) then {
+			println(i + " is a prime number ");
+		}
+	}
+}
+

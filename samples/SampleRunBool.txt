@@ -4,9 +4,22 @@ execute{
     bool c = a and b;
     bool d = a or b;
     bool e = not a;
-    println(a);
-    println(b);
-    println(c);
-    println(d);
-    println(e);
+
+    if(d) then {
+	number i = 10;
+	while(i < 15) {
+		a ? println("True"): println("False");
+		println(i);
+		i++;
+		a = not a;
+	}
+   }
+
+
+//    println(a);
+//    println(b);
+//    println(c);
+//    println(d);
+//    println(e);
+
 }

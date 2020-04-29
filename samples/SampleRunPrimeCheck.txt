@@ -1,5 +1,5 @@
 execute{
-number num = 40;
+number num = 19;
 bool prime = true;
 if (num > 1) then{
     for i in  range(2,num){

@@ -40,7 +40,7 @@ booleanDeclaration(tree_boolDecl(X,Y)) --> [bool], var_name(X), ['='], bool_expr
 booleanDeclaration(tree_boolDecl(X)) --> [bool], var_name(X).
 
 
-eval_booleanDeclaration(tree_boolDecl(X,Y),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)),eval_boolExp(Y,Env,Scope,Val), update(X,Val,Scope,Env, EnvR).
+eval_booleanDeclaration(tree_boolDecl(X,Y),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)),eval_boolExp(Y,Val, Env,Scope), update(X,Val,Scope,Env, EnvR).
 eval_booleanDeclaration(tree_boolDecl(X,_),Env,Env,Scope):- lookup(X,Env,Scope,_), string_concat(X, " : Variable already declared", M), writeException(M), false.
 
 eval_booleanDeclaration(tree_boolDecl(X),Env,EnvR,Scope):- not(lookup(X,Env,Scope,_)), update(X,false,Scope,Env,EnvR).
@@ -84,7 +84,7 @@ eval_statement(tree_print_statement(X), Env,Env,Scope) :- eval_print_statement(X
 eval_statement(tree_statement_number(X,Y), Env,EnvR,Scope) :-  lookup_for_previous_scope(X,Env,Scope,_), eval_numberExp(Y,Env,Scope,Val), find_scope(X,Env,Scope,ActualScope), update(X,Val,ActualScope,Env,EnvR).
 eval_statement(tree_statement_number(X,_), Env,_,Scope) :-  not(lookup_for_previous_scope(X,Env,Scope,_)), string_concat(X, " : Variable is not declared", M), writeException(M), false.
 
-eval_statement(tree_statement_bool(X,Y), Env,EnvR,Scope) :-  lookup_for_previous_scope(X,Env,Scope,_), eval_boolExp(Y,Env,Scope,Val), find_scope(X,Env,Scope,ActualScope), update(X,Val,ActualScope,Env,EnvR).
+eval_statement(tree_statement_bool(X,Y), Env,EnvR,Scope) :-  lookup_for_previous_scope(X,Env,Scope,_), eval_boolExp(Y,Val,Env,Scope), find_scope(X,Env,Scope,ActualScope), update(X,Val,ActualScope,Env,EnvR).
 eval_statement(tree_statement_bool(X,_), Env,_,Scope) :-  not(lookup_for_previous_scope(X,Env,Scope,_)), string_concat(X, " : Variable is not declared", M), writeException(M), false.
 
 eval_statement(tree_statement_string(X,Y), Env,EnvR,Scope) :- lookup_for_previous_scope(X,Env,Scope,_), find_scope(X,Env,Scope,ActualScope), update(X,Y,ActualScope,Env,EnvR).
@@ -195,12 +195,12 @@ bool_expr(tree_equalityString(X,Y)) --> string_expr(X), ['=='], string_expr(Y).
 bool_expr(tree_notEqualString(X,Y)) --> string_expr(X), ['!='], string_expr(Y).
 bool_expr(tree_equalityBool(X,Y)) --> bool_expr(X), ['=='], bool_expr(Y).
 bool_expr(tree_notEqualBool(X,Y)) --> bool_expr(X), ['!='], bool_expr(Y).
-bool_expr(X) --> bool_expr2(X).
+
+
+
 bool_expr(tree_variable(X))  --> var_name(X).
 bool_expr(tree_boolean(true)) --> ['true'].
 bool_expr(tree_boolean(false)) --> ['false'].
-
-bool_expr2(tree_boolbrackets(X)) --> ['('], bool_expr(X), [')'].
 
 
 
@@ -245,9 +245,7 @@ eval_boolExp(tree_greaterOrEq(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, S
 
 eval_boolExp(tree_lesserOrEq(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_numberExp(Y, Env, Scope, Val2), Val1 =< Val2, Val = true.
 eval_boolExp(tree_lesserOrEq(X,Y), Env, Scope, Val) :- eval_numberExp(X, Env, Scope, Val1), eval_numberExp(Y, Env, Scope, Val2), Val1 > Val2, Val = false.
-eval_boolExp(X, Env, Scope, Val) :- eval_boolExp2(X, Env, Scope, Val).
 
-eval_boolExp2(tree_boolbrackets(X), Env, Scope, Val):- eval_boolExp(X,Env,Scope,Val).
 
 eval_boolean_not(true,_,_,false).
 eval_boolean_not(false,_,_,true).
