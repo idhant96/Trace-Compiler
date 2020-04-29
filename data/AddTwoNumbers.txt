@@ -1,7 +1,0 @@
-execute{
-    number num1 = 15;
-    number num2 = 12 ;
-    number sum = num1 + num2 ;
-    print("Sum is " + str(sum));
-
-}

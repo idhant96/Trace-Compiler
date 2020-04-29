@@ -1,9 +1,0 @@
-execute {
-number a=2; number b; 
-number c = a +b;
-
-println(str(a));
-print(10);
-}
-
-

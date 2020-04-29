@@ -1,7 +1,0 @@
-execute {
-number a; 
-number b; 
-number c = a + b;
-number s = len("idhnat");
-print(s);
-}

@@ -59,7 +59,7 @@ def main():
     tokens = get_tokens(filepath=main_var, rules=rules)
     syntax_predicate = "program(P, " + tokens + " [])."
     syntax_predicate = syntax_predicate.replace('"', '\\"')
-    command = 'swipl -s ./src/project.pl -g "' + syntax_predicate + '" -g halt'
+    command = 'swipl -s ./project.pl -g "' + syntax_predicate + '" -g halt'
     ec, outpu = sp.getstatusoutput(command)
     if ec > 0 :
         print("[Exception]: SyntaxError")
@@ -67,7 +67,7 @@ def main():
 
     eval_predicate = "program(P, " + tokens + " []), eval_program(P)."
     eval_predicate = eval_predicate.replace('"', '\\"')
-    command = 'swipl -s ./src/project.pl -g "' + eval_predicate + '" -g halt'
+    command = 'swipl -s ./project.pl -g "' + eval_predicate + '" -g halt'
     try:
         process = sp.Popen(command, stdout=sp.PIPE, stderr=None, shell=True)
         output = process.communicate()

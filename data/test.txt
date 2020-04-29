@@ -1,9 +1,0 @@
-execute {
-number a = 10;
-number b = 4;
-
-bool y = true;
-
-print(y);
-// i am awesome
-}

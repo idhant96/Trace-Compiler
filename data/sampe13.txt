@@ -1,5 +1,0 @@
-execute {
-
-(10 < 12) ? println("true") : println("false");
-
-}
