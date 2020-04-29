@@ -43,6 +43,7 @@ def get_tokens(filepath=None, rules=None):
         else:
             token_string += "\'{}\',".format(token.value)
     return '[' + token_string[0:-1] + '],'
+
 def extractOutput(output):
     finalOutput = ""
     spl =output.split("\n")
@@ -55,7 +56,7 @@ def extractOutput(output):
     else:
         for i in spl:
             if "[OP_##]" in i:
-                finalOutput = i.replace("[OP_##]", "")
+                finalOutput += i.replace("[OP_##]", "")
                 finalOutput += "\n"
         return finalOutput
 
@@ -73,10 +74,12 @@ def main():
     #print("command is: " + command)
     # stream = os.popen(command)
    
-    stream = sp.check_output(command, shell=True)
-    # output = stream.read()
-    input(stream)
-    finalOutput = extractOutput(output)
+    stream = sp.check_output(command, shell=True).decode('utf-8')
+    # input(stream)
+    # output = str(stream)
+    # input(stream)
+    finalOutput = extractOutput(stream)
+    # input()
     if len(finalOutput) > 0:
         print(finalOutput)
     else:
