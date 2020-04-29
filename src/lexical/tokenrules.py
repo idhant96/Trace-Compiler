@@ -1,3 +1,8 @@
+#Author : Idhant, Swarnalatha
+#Purpose : this file defines the token rules
+#Date : 23rd April 2020
+
+
 import ply.lex as lex
 
 
