@@ -72,6 +72,7 @@ eval_statementList(tree_statementList(X,Y),Env,EnvR,Scope):-  eval_conditionalSt
 eval_statementList(tree_statementList(empty),Env,Env,_).
 
 %-----
+
 statement(tree_print_statement(X)) --> print_statement(X).
 statement(tree_statement_number(X,Y)) --> var_name(X), ['='], number_expr(Y).
 statement(tree_statement_bool(X,Y)) --> var_name(X), ['='], bool_expr(Y).
@@ -135,7 +136,7 @@ eval_loopWithStatement(Y, _, _, Env, Env, Scope) :- eval_boolExp(Y, Env, Scope, 
 conditionalStatement(tree_IF(X,Y)) --> [if], ['('], bool_expr(X) , [')'], [then], block(Y).
 conditionalStatement(tree_if_then_else(X,Y,Z)) --> [if], ['('], bool_expr(X) , [')'], [then], block(Y) , [else], [then], block(Z).
 conditionalStatement(tree_if_then_else_if(X,Y,Z)) --> [if], ['('], bool_expr(X) , [')'], [then], block(Y) , [else], conditionalStatement(Z).
-conditionalStatement(tree_ternary(X,Y,Z)) --> bool_expr(X), ['?'], statement(Y), [':'], statement(Z).
+conditionalStatement(tree_ternary(X,Y,Z)) --> bool_expr(X), ['?'], statement(Y), [':'], statement(Z),[;].
 
 eval_conditionalStatement(tree_IF(X,Y), Env, EnvR, Scope) :- eval_boolExp(X,Env,Scope,BoolVal), BoolVal = true, eval_block(Y, Env, EnvR, Scope).
 eval_conditionalStatement(tree_IF(X,_), Env, Env, Scope) :- eval_boolExp(X,Env,Scope,BoolVal), BoolVal = false.
