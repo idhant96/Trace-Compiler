@@ -15,7 +15,7 @@ Tools Used
 
 Directions/instructions to install our language
 ------------
-* We need to install Python package requirements and SWI Prolog Libraries.
+* We need to install Python 3 package requirements and SWI Prolog Libraries.
 
 ********************************************
 
