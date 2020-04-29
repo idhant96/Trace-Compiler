@@ -270,7 +270,7 @@ eval_stringExp(tree_concat(X,Y),Env,Scope,Val):- eval_stringExp(X, Env, Scope, V
 bool_string(true, "true").
 bool_string(false, "false").
 
-validate_varname(X):- L = [true, false, and ,or , not, for ,while], inList(X, L, Val), Val = false.
+validate_varname(X):- L = [true, false, and ,or , not, for ,while, if, then, else,range,number,string,write,str,len,print,println], inList(X, L, Val), Val = false.
 
 inList(X, [H|_], Val):- X = H, Val = true.
 inList(_,[],false).
